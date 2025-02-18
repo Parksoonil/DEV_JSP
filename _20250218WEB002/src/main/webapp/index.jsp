@@ -1,3 +1,4 @@
+<%@page import="com.mysql.cj.x.protobuf.MysqlxSql.StmtExecute"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
@@ -10,12 +11,15 @@
 <body>
 <%
 	String URL = "jdbc:mysql://localhost:3306/spring5fs";
+	String sql = "insert into dept(deptno, dname, loc) values (50, '영업', '서울')";
 	Connection conn = null;
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	System.out.println("드라이버 로딩!");
+	out.println("드라이버 로딩!<br>");
 	try {
 		conn = DriverManager.getConnection(URL, "root", "1234");
-		System.out.println("Mysql 접속 성공!");
+		Statement stmt = conn.createStatement();
+		out.println("Mysql 접속 성공!");
+		stmt.executeUpdate(sql);
 	} catch(Exception e) {
 		e.printStackTrace();
 	} finally {
