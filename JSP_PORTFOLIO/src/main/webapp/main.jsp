@@ -89,10 +89,19 @@
 <body>
     <div class="header">
         <h1>Kyobo Bookstore</h1>
-        <div class="buttons">
-            <button>로그인</button>
-            <button>회원가입</button>
-        </div>
+        <%
+			String userid = (String)session.getAttribute("userid");
+			if(userid == null) {%>
+        		<div class="buttons">
+    					<button onclick="location.href='loginForm.jsp'">로그인</button>
+    					<button onclick="location.href='submitForm.jsp'">회원가입</button>
+       			</div>
+		<%	} else {%>
+        		<div class="buttons">
+            		<button>비밀번호 변경</button>
+            		<button onclick="location.href='logout.jsp'">로그아웃</button>
+       			</div>	
+		<%	} %>
     </div>
     <div class="content">
         <div class="grid">

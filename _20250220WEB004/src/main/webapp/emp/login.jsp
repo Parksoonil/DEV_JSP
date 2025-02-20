@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <%
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	String userid = request.getParameter("username");
+	String userid = request.getParameter("userid");
 	String password = request.getParameter("password");
 	String url = "jdbc:mysql://localhost:3306/spring5fs";
-	String sql = "select * from account where username=?";
+	String sql = "select * from emp where empno=?";
 	Connection conn = null; PreparedStatement pstmt = null; ResultSet rset = null;
 	
 	try {
@@ -16,7 +16,7 @@
 		pstmt.setString(1, userid);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
-			if(rset.getString("password").equals(password)) {
+			if(rset.getString("ename").equals(password)) {
 				session.setAttribute("userid", userid);
 				response.sendRedirect("main.jsp");
 			} else {
