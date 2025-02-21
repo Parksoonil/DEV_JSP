@@ -2,13 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
 <%
+	String pw = request.getParameter("password");
+	String checkPW = request.getParameter("checkpassword");
+	if (pw == null || checkPW == null || !pw.equals(checkPW)) {
+        request.setAttribute("error", "비밀번호가 일치하지 않습니다.");
+        request.getRequestDispatcher("submitForm.jsp").forward(request, response);	
+        return;
+	}
+	
 	request.setCharacterEncoding("UTF-8"); 
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	String url = "jdbc:mysql://localhost:3306/spring5fs";
 	String sql = "insert into account values (?, ?, ?, ?, ?, ?)";
 
 	String id = request.getParameter("userid");
-	String pw = request.getParameter("password");
 	String name = request.getParameter("name");
 	String email = request.getParameter("email");
 	String phone = request.getParameter("phone");

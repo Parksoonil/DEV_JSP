@@ -21,8 +21,11 @@
                 <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
-                <label for="confirm-password" class="block text-gray-700">비밀번호 확인</label>
-                <input type="password" id="confirm-password" name="confirm-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <label for="checkpassword" class="block text-gray-700">비밀번호 확인</label>
+                <input type="password" id="checkpassword" name="checkpassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span id="password-error" class="text-red-500 text-sm">
+                    <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+                </span>
             </div>
             <div class="mb-4">
    				<label for="name" class="block text-gray-700">이름</label>

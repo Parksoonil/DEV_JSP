@@ -10,7 +10,7 @@
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 class="text-2xl font-bold text-center mb-6">아이디 찾기</h2>
+        <h2 class="text-2xl font-bold text-center mb-6">비밀번호 찾기</h2>
         <form action="selectPassword.jsp" method="POST">
             <div class="mb-4">
                 <label for="id" class="block text-gray-700">아이디</label>

@@ -3,24 +3,33 @@
 <%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <%
+	String jdbcUrl = "jdbc:mysql://" + System.getenv("MYSQL_HOST") + ":3306/" + System.getenv("MYSQL_DATABASE");
+	String DBusername = System.getenv("MYSQL_USER");
+	String DBpassword = System.getenv("MYSQL_PASSWORD");
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	String userid = request.getParameter("userid");
 	String password = request.getParameter("password");
-	String url = "jdbc:mysql://localhost:3306/spring5fs";
-	String sql = "select * from account where userid=?";
+	String sql = "select * from emp where empno=?";
 	Connection conn = null; PreparedStatement pstmt = null; ResultSet rset = null;
 	
 	try {
-		conn = DriverManager.getConnection(url, "root", "1234");
+		conn = DriverManager.getConnection(jdbcUrl, DBusername, DBpassword);
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, userid);
 		rset = pstmt.executeQuery();
 		if(rset.next()) {
-			if(rset.getString("password").equals(password)) {
+			if(rset.getString("ename").equals(password)) {
 				session.setAttribute("userid", userid);
-				response.sendRedirect("main.jsp");
+				System.out.println("접속성공");
+				response.sendRedirect("index.jsp");
+			} else {
+				System.out.println("접속실패1");
+				response.sendRedirect("loginForm.jsp");
 			}
-		} 
+		} else {
+			System.out.println("접속실패2");
+			response.sendRedirect("loginForm.jsp");
+		}
 	} catch(Exception e) {
 		e.printStackTrace();
 	} finally {
