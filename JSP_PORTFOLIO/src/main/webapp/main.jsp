@@ -39,7 +39,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background-color: #007bff;
+            background-color: #333;
             color: white;
             position: fixed;
             left: 0;
@@ -95,6 +95,19 @@
             background-color: #ccc;
             pointer-events: none;
         }
+        .btn {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #27ae60;
+        }
     </style>
 </head>
 <body>
@@ -104,12 +117,13 @@
         <% String userid = (String) session.getAttribute("userid"); %>
         <div class="buttons">
             <% if (userid == null) { %>
-                <button onclick="location.href='loginForm.jsp'">로그인</button>
-                <button onclick="location.href='submitForm.jsp'">회원가입</button>
+                <button onclick="location.href='loginForm.jsp'" class="btn">로그인</button>
+                <button onclick="location.href='submitForm.jsp'" class="btn">회원가입</button>
             <% } else { %>
-                <button>비밀번호 변경</button>
-                <button onclick="location.href='logout.jsp'">로그아웃</button>
+                <button onclick="location.href='logout.jsp'" class="btn">비밀번호 변경</button>
+                <button onclick="location.href='logout.jsp'" class="btn">로그아웃</button>
             <% } %>
+            <button onclick="location.href='cart.jsp'" class="btn">장바구니</button>
         </div>
     </div>
         <div class="grid">
@@ -122,11 +136,13 @@
                     rset = pstmt.executeQuery();
                     while (rset.next()) {
             %>
-                <div class="card">
-                    <img src="images/gatsby.jpg" alt="Book">
-                    <h2><%= rset.getString("title") %></h2>
-                    <p><%= rset.getString("author") %></p>
-                </div>
+				<a href="bookDetail.jsp?id=<%= rset.getInt("id") %>">
+   					<div class="card">
+        				<img src="images/<%= rset.getString("titleimg") %>" alt="Book">
+        				<h2><%= rset.getString("title") %></h2>
+        				<p><%= rset.getString("author") %></p>
+    				</div>
+				</a>
             <%
                     }
                 } catch (Exception e) {
