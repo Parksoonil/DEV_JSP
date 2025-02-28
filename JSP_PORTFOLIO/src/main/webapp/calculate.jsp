@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
 <%
+	request.setCharacterEncoding("utf-8");
     Class.forName("com.mysql.cj.jdbc.Driver");
     String url = "jdbc:mysql://localhost:3306/spring5fs";
     Connection conn = null;
@@ -121,8 +122,12 @@
                 <span class="value">₩<%=total %></span>
             </div>
         </div>
-		<button>결제하기</button>
-    </div>
-
+		<form action="processPayment.jsp" method="post" id="paymentForm">
+            <input type="hidden" name="userid" value="<%= userid %>">
+            <input type="hidden" name="total" value="<%= total %>">
+            <button type="submit" class="buy-btn">결제하기</button>
+        </form>
+    </div>>
+   
 </body>
 </html>

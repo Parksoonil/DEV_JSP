@@ -113,7 +113,7 @@
                     	<h3>책 소개:</h3>
                     	<p><%=rset.getString("synopsis") %></p>
                 	</div>
-                	<a href="cart.jsp" class="buy-btn">장바구니</a>
+                	<a href="insertBook.jsp?bookid=<%=rset.getInt("id") %>" class="buy-btn">장바구니</a>
                		<a href="calculate.jsp?total=<%=rset.getInt("price")+5000 %>" class="buy-btn">구매하기</a>
             	</div>
         	</div>

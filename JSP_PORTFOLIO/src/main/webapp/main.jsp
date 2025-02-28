@@ -120,10 +120,11 @@
                 <button onclick="location.href='loginForm.jsp'" class="btn">로그인</button>
                 <button onclick="location.href='submitForm.jsp'" class="btn">회원가입</button>
             <% } else { %>
-                <button onclick="location.href='logout.jsp'" class="btn">비밀번호 변경</button>
+            	<button onclick="location.href='cart.jsp'" class="btn">장바구니</button>
+                <button onclick="location.href='changePersonalForm.jsp?id=<%=userid %>'" class="btn">개인정보 변경</button>
                 <button onclick="location.href='logout.jsp'" class="btn">로그아웃</button>
             <% } %>
-            <button onclick="location.href='cart.jsp'" class="btn">장바구니</button>
+            
         </div>
     </div>
         <div class="grid">
